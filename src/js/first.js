@@ -1,1 +1,2 @@
-document.getElementById('test').innerHTML = 'wow';
+document.getElementByID('test').innerHTML = 'wwwssssw';
+
