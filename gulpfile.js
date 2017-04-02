@@ -17,7 +17,7 @@ gulp.task('scripts', function(){
 		])
 	.pipe(plumber())
 	.pipe(concat('main.js'))
-	.pipe(gulp.dest('./dist/js'))
+	.pipe(gulp.dest('./dist/static/js'))
 	.pipe(reload({stream:true}));
 });
 
@@ -31,37 +31,39 @@ gulp.task('styles', function(){
 	.pipe(plumber())
 	.pipe(sass())
 	.pipe(concat('styles.css'))
-	.pipe(gulp.dest('./dist/css'))
+	.pipe(gulp.dest('./dist/static/css'))
 	.pipe(reload({stream:true}));
 });
 
 
-// Task - Fonts 
+// Task - Fonts
 gulp.task('fonts', function() {
 	gulp.src([
 		'./src/components/bootstrap/fonts/**/*',
 		'./src/components/components-font-awesome/fonts/**/*',
 		'./src/fonts/**/*'
 		])
-	.pipe(gulp.dest('./dist/fonts'))
+	.pipe(gulp.dest('./dist/static/fonts'))
 	.pipe(reload({stream:true}));
 })
 
 
-// Task - HTML 
+// Task - HTML
 gulp.task('html', function(){
-	gulp.src('./src/**/*.html')
-	.pipe(gulp.dest('./dist'))
+	gulp.src('./src/templates/**/*.html')
+	.pipe(gulp.dest('./dist/templates'))
 	.pipe(reload({stream:true}));
 });
 
 
-// Task - BrowserSync 
+// Task - BrowserSync
 gulp.task('browser-sync', function(){
 	browserSync({
-		server:{
-			baseDir: "./dist/"
-		}
+		//server:{
+		//	baseDir: "./dist/"
+		//},
+		proxy: "127.0.0.1:5000",
+		files: ["./dist/**/*"]
 	});
 });
 
@@ -77,4 +79,3 @@ gulp.task('watch', function(){
 
 // Run all tasks above
 gulp.task('default', ['fonts', 'styles', 'scripts', 'html', 'browser-sync', 'watch']);
- 
