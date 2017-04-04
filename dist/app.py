@@ -11,11 +11,8 @@ app.jinja_env.globals.update(item=item)
 
 @app.route("/")
 def index():
-    if (False):
-        # return "Hello World"
-        return render_template("index.html")
-    else:
-        return render_template("second.html")
+    return render_template("index.html")
+    
 
 if __name__ == "__main__":
     app.run()
